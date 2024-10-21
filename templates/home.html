@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="shortcut icon" href="#">
+    <title>Chandigarh House Pricing</title>
+    <style>
+        html {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            background-image: linear-gradient(to right top, #3d438b, #a14d91, #e4657e, #ff9866, #ffd665);
+            background-image: linear-gradient(to left bottom, #2ec489, #00baa1, #00afb2, #00a2ba, #0094b9, #0488b7, #1c7cb3, #3070ac, #4163a6, #51549c, #60448e, #6c327c);
+        }
+
+        *:before,
+        *:after {
+            box-sizing: border-box;
+        }
+
+        .toggle {
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .toggle-switch {
+            display: inline-block;
+            background: #ccc;
+            border-radius: 16px;
+            width: 58px;
+            height: 32px;
+            position: relative;
+            vertical-align: middle;
+            transition: background 0.25s;
+        }
+
+        .toggle-switch:before,
+        .toggle-switch:after {
+            content: "";
+        }
+
+        .toggle-switch:before {
+            display: block;
+            background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            transition: left 0.25s;
+        }
+
+        .toggle:hover .toggle-switch:before {
+            background: linear-gradient(to bottom, #fff 0%, #fff 100%);
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+        }
+
+        .toggle-checkbox:checked+.toggle-switch {
+            background: #FF8749;
+        }
+
+        .toggle-checkbox:checked+.toggle-switch:before {
+            left: 30px;
+        }
+
+        .toggle-checkbox {
+            position: absolute;
+            visibility: hidden;
+        }
+
+        .toggle-label {
+            margin-left: 5px;
+            position: relative;
+            top: 2px;
+        }
+
+        /* Gym Toggle */
+        .gym {
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .gym-switch {
+            display: inline-block;
+            background: #ccc;
+            border-radius: 16px;
+            width: 58px;
+            height: 32px;
+            position: relative;
+            vertical-align: middle;
+            transition: background 0.25s;
+        }
+
+        .gym-switch:before,
+        .gym-switch:after {
+            content: "";
+        }
+
+        .gym-switch:before {
+            display: block;
+            background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            transition: left 0.25s;
+        }
+
+        .gym:hover .gym-switch:before {
+            background: linear-gradient(to bottom, #fff 0%, #fff 100%);
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+        }
+
+        .gym-checkbox:checked+.gym-switch {
+            background: #FF8749;
+        }
+
+        .gym-checkbox:checked+.gym-switch:before {
+            left: 30px;
+        }
+
+        .gym-checkbox {
+            position: absolute;
+            visibility: hidden;
+        }
+
+        .gym-label {
+            margin-left: 5px;
+            position: relative;
+            top: 2px;
+        }
+
+        /* ind Toggle */
+
+        .ind {
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .ind-switch {
+            display: inline-block;
+            background: #ccc;
+            border-radius: 16px;
+            width: 58px;
+            height: 32px;
+            position: relative;
+            vertical-align: middle;
+            transition: background 0.25s;
+        }
+
+        .ind-switch:before,
+        .ind-switch:after {
+            content: "";
+        }
+
+        .ind-switch:before {
+            display: block;
+            background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            transition: left 0.25s;
+        }
+
+        .ind:hover .ind-switch:before {
+            background: linear-gradient(to bottom, #fff 0%, #fff 100%);
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+        }
+
+        .ind-checkbox:checked+.ind-switch {
+            background: #FF8749;
+        }
+
+        .ind-checkbox:checked+.ind-switch:before {
+            left: 30px;
+        }
+
+        .ind-checkbox {
+            position: absolute;
+            visibility: hidden;
+        }
+
+        .ind-label {
+            margin-left: 5px;
+            position: relative;
+            top: 2px;
+        }
+
+        /* Car Toggle */
+
+        .car {
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .car-switch {
+            display: inline-block;
+            background: #ccc;
+            border-radius: 16px;
+            width: 58px;
+            height: 32px;
+            position: relative;
+            vertical-align: middle;
+            transition: background 0.25s;
+        }
+
+        .car-switch:before,
+        .car-switch:after {
+            content: "";
+        }
+
+        .car-switch:before {
+            display: block;
+            background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            transition: left 0.25s;
+        }
+
+        .car:hover .car-switch:before {
+            background: linear-gradient(to bottom, #fff 0%, #fff 100%);
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+        }
+
+        .car-checkbox:checked+.car-switch {
+            background: #FF8749;
+        }
+
+        .car-checkbox:checked+.car-switch:before {
+            left: 30px;
+        }
+
+        .car-checkbox {
+            position: absolute;
+            visibility: hidden;
+        }
+
+        .car-label {
+            margin-left: 5px;
+            position: relative;
+            top: 2px;
+        }
+
+        /* Jog Toggle */
+
+        .jog {
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .jog-switch {
+            display: inline-block;
+            background: #ccc;
+            border-radius: 16px;
+            width: 58px;
+            height: 32px;
+            position: relative;
+            vertical-align: middle;
+            transition: background 0.25s;
+        }
+
+        .jog-switch:before,
+        .jog-switch:after {
+            content: "";
+        }
+
+        .jog-switch:before {
+            display: block;
+            background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            transition: left 0.25s;
+        }
+
+        .jog:hover .jog-switch:before {
+            background: linear-gradient(to bottom, #fff 0%, #fff 100%);
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+        }
+
+        .jog-checkbox:checked+.jog-switch {
+            background: #FF8749;
+        }
+
+        .jog-checkbox:checked+.jog-switch:before {
+            left: 30px;
+        }
+
+        .jog-checkbox {
+            position: absolute;
+            visibility: hidden;
+        }
+
+        .jog-label {
+            margin-left: 5px;
+            position: relative;
+            top: 2px;
+        }
+
+        .data-query {
+            margin-top: 30px;
+        }
+
+        .data-query textarea {
+            height: 150px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1 style="color: white; text-align: center; font-size: 50px; margin-top: 50px"><b>House Pricing in Chandigarh</b></h1>
+    <p style="color: white; text-align: center; font-size: 25px;">Are you looking for a place to live in Chandigarh?</p>
+    <div class="container">
+        <div class="row">
+            <div class="card" style="width: 100%; height:100%; margin-top: 50px">
+                <form method="post" accept-charset="UTF-8">
+                    <div class="row">
+                        <div class="col-md-6 form-group" style="text-align: center;  margin-top: 15px;">
+                            <label><b>Location</b></label>
+                            <select class="selectpicker form-control" id="location" name="location" required="1"
+                                style="margin-left:12px">
+                                {% for location in locations %}
+                                <option value="{{ location }}"> {{ location }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6 form-group" style="text-align:center; margin-top: 15px;">
+                            <label><b>Area</b></label>
+                            <input type="number" class="form-control" id="area" name="area" required='1'
+                                placeholder="Enter Area in Sq/Ft" style="width: 90%; margin-left: 20px;" min="100">
+                        </div>
+                        <p></p>
+                        <div class="col-md-6 form-group">
+                            <div style="float:left;">
+                                <label><b>Gym</b></label>
+                                <label class="toggle">
+                                    <input type="checkbox" name="gym" class="toggle-checkbox gym-checkbox" value="1">
+                                    <div class="toggle-switch gym-switch"></div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <div style="float:left;">
+                                <label><b>Independence</b></label>
+                                <label class="toggle">
+                                    <input type="checkbox" name="ind" class="toggle-checkbox ind-checkbox" value="1">
+                                    <div class="toggle-switch ind-switch"></div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <div style="float:left;">
+                                <label><b>Car Parking</b></label>
+                                <label class="toggle">
+                                    <input type="checkbox" name="car" class="toggle-checkbox car-checkbox" value="1">
+                                    <div class="toggle-switch car-switch"></div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <div style="float:left;">
+                                <label><b>Jogging Park</b></label>
+                                <label class="toggle">
+                                    <input type="checkbox" name="jog" class="toggle-checkbox jog-checkbox" value="1">
+                                    <div class="toggle-switch jog-switch"></div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <input type="submit" class="btn btn-primary" value="Predict Price" style="margin-bottom: 20px;">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="data-query">
+            <h2 style="color: white; text-align: center;">Query CSV Data</h2>
+            <form method="post" accept-charset="UTF-8">
+                <textarea class="form-control" id="query" name="query" placeholder="Enter your query here..."></textarea>
+                <div style="text-align: center;">
+                    <input type="submit" class="btn btn-secondary" value="Submit Query" style="margin-top: 10px;">
+                </div>
+            </form>
+            {% if query_result %}
+            <h3 style="color: white; text-align: center; margin-top: 20px;">Query Result:</h3>
+            <p style="color: white; text-align: center;">{{ query_result }}</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>
